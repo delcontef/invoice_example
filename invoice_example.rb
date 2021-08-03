@@ -24,13 +24,17 @@ class Invoice
         4 => [15000, 15],
     }
 
-    def initialize(qty, u_price, state)
-        @qty = qty.to_f()
-        @u_price = u_price.to_f()
+    def initialize(state)
         @state = state.to_s().downcase()
         @a_tax = @@tax_map[@state]
 
         puts("@a_tax: #{@a_tax}")
+    end
+
+    def calculate(qty, u_price)
+        qty = qty.to_f()
+        u_price = u_price.to_f()
+        puts("In calculate method. qty: #{qty} u_price: #{u_price}")
     end
 end
 
@@ -39,5 +43,6 @@ if(3 != ARGV.length)
     puts("should be: ruby invoice_example.rb <quantity> <unit_price> <state>")
     puts("Ex: ruby invoice_example.rb 1 2 CA")
 else
-    invoice = Invoice.new(ARGV[0], ARGV[1], ARGV[2])
+    invoice = Invoice.new(ARGV[2])
+    invoice.calculate(ARGV[0], ARGV[1])
 end
