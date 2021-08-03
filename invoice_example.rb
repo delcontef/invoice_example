@@ -18,8 +18,9 @@ class Invoice
     }
 
     @@disc_map = {
-        1 => [1000, 3],
-        2 => [5000, 5],
+        0 => [    0,  0],
+        1 => [ 1000,  3],
+        2 => [ 5000,  5],
         3 => [10000, 10],
         4 => [15000, 15],
     }
@@ -38,6 +39,13 @@ class Invoice
         total_tax = total_price * @a_tax / 100
         puts("total_price: #{total_price}")
         puts("total_tax: #{total_tax}")
+
+        for i in (0..(@@disc_map.length - 2))
+            puts("@@disc_map[#{i}].range: #{@@disc_map[i][0]} @@disc_map[#{i}].dto: #{@@disc_map[i][1]}")
+            break if(total_price.between?(@@disc_map[i][0],@@disc_map[i+1][0]))
+        end
+
+        puts("i: #{i}")
     end
 end
 
