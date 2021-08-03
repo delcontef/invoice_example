@@ -1,13 +1,20 @@
 # ruby factura.rb <cantidad> <precio_unitario> <estado>
 
-class Invoice    
+class Invoice
+    @@state_map = {
+        :Utah => "ut",
+        :Nevada => "nv",
+        :Texas => "tx",
+        :Alabama => "al",
+        :California => "ca",
+    }
+
     def initialize(qty, u_price, state)
         @qty = qty.to_f()
         @u_price = u_price.to_f()
-        @state = state
-
+        @state = state.to_s().downcase()
+        
         puts("qty #{@qty}, u_price #{@u_price}, state #{@state}")
-        puts("qty #{@qty.is_a?(Float)}, u_price #{@u_price.is_a?(Float)}, state #{@state.is_a?(Float)}")
     end
 end
 
