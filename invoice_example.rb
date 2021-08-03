@@ -28,8 +28,6 @@ class Invoice
     def initialize(state)
         @state = state.to_s().downcase()
         @a_tax = @@tax_map[@state]
-
-        puts("@a_tax: #{@a_tax}")
     end
 
     def calculate(qty, u_price)
@@ -37,11 +35,9 @@ class Invoice
         u_price = u_price.to_f()
         total_price = qty * u_price
         total_tax = total_price * @a_tax / 100
-        puts("total_price: #{total_price}")
-        puts("total_tax: #{total_tax}")
+
         is_found = false
         for i in (0..(@@disc_map.length - 2))
-            puts("i: #{i}")
             if((total_price >= @@disc_map[i][0]) && (total_price < @@disc_map[i + 1][0]))
                 is_found = true
                 break
@@ -51,8 +47,14 @@ class Invoice
         if(false == is_found)
             i+=1
         end
+        total_disc = total_price * @@disc_map[i][1] / 100
+        
+        final_value = total_price + total_tax - total_disc
+        puts("****************************")
+        puts("tax: #{@a_tax}% total tax: #{total_tax} discount: #{total_disc}")
+        puts("final_value: #{final_value}")
+        puts("****************************")
 
-        puts("range: #{@@disc_map[i][0]} dto: #{@@disc_map[i][1]}")
     end
 end
 
