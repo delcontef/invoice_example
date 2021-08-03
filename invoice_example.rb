@@ -28,6 +28,12 @@ class Invoice
     def initialize(state)
         @state = state.to_s().downcase()
         @a_tax = @@tax_map[@state]
+        if(nil == @a_tax)
+            puts("\nError!\nTax information not found!. Please, try again..")
+            puts("Available options are:")
+            @@state_map.each{|a| puts("     #{a[1]}: #{a[0]}")}
+            exit
+        end
     end
 
     def calculate(qty, u_price)
