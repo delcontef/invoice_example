@@ -2,18 +2,26 @@
 
 class Invoice
     @@state_map = {
-        :Utah => "ut",
-        :Nevada => "nv",
-        :Texas => "tx",
-        :Alabama => "al",
+        :Utah       => "ut",
+        :Nevada     => "nv",
+        :Texas      => "tx",
+        :Alabama    => "al",
         :California => "ca",
     }
+    
     @@tax_map = {
-        @@state_map[:Utah] => 6.85,
-        @@state_map[:Nevada] => 8.0,
-        @@state_map[:Texas] => 6.25,
-        @@state_map[:Alabama] => 4.0,
+        @@state_map[:Utah]       => 6.85,
+        @@state_map[:Nevada]     => 8.0,
+        @@state_map[:Texas]      => 6.25,
+        @@state_map[:Alabama]    => 4.0,
         @@state_map[:California] => 8.25,
+    }
+
+    @@disc_map = {
+        1 => [1000, 3],
+        2 => [5000, 5],
+        3 => [10000, 10],
+        4 => [15000, 15],
     }
 
     def initialize(qty, u_price, state)
@@ -21,7 +29,8 @@ class Invoice
         @u_price = u_price.to_f()
         @state = state.to_s().downcase()
         
-        puts("qty #{@qty}, u_price #{@u_price}, state #{@state}")
+        puts("associated tax: #{@@tax_map[@state]} #{@@disc_map[2][0]}")
+
     end
 end
 
