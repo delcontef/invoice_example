@@ -28,9 +28,9 @@ class Invoice
         @qty = qty.to_f()
         @u_price = u_price.to_f()
         @state = state.to_s().downcase()
-        
-        puts("associated tax: #{@@tax_map[@state]} #{@@disc_map[2][0]}")
+        @a_tax = @@tax_map[@state]
 
+        puts("@a_tax: #{@a_tax}")
     end
 end
 
