@@ -35,7 +35,9 @@ class Invoice
         qty = qty.to_f()
         u_price = u_price.to_f()
         total_price = qty * u_price
+        total_tax = total_price * @a_tax / 100
         puts("total_price: #{total_price}")
+        puts("total_tax: #{total_tax}")
     end
 end
 
