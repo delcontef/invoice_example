@@ -8,6 +8,13 @@ class Invoice
         :Alabama => "al",
         :California => "ca",
     }
+    @@tax_map = {
+        @@state_map[:Utah] => 6.85,
+        @@state_map[:Nevada] => 8.0,
+        @@state_map[:Texas] => 6.25,
+        @@state_map[:Alabama] => 4.0,
+        @@state_map[:California] => 8.25,
+    }
 
     def initialize(qty, u_price, state)
         @qty = qty.to_f()
