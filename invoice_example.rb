@@ -39,13 +39,20 @@ class Invoice
         total_tax = total_price * @a_tax / 100
         puts("total_price: #{total_price}")
         puts("total_tax: #{total_tax}")
-
+        is_found = false
         for i in (0..(@@disc_map.length - 2))
-            puts("@@disc_map[#{i}].range: #{@@disc_map[i][0]} @@disc_map[#{i}].dto: #{@@disc_map[i][1]}")
-            break if(total_price.between?(@@disc_map[i][0],@@disc_map[i+1][0]))
+            puts("i: #{i}")
+            if((total_price >= @@disc_map[i][0]) && (total_price < @@disc_map[i + 1][0]))
+                is_found = true
+                break
+            end
         end
 
-        puts("i: #{i}")
+        if(false == is_found)
+            i+=1
+        end
+
+        puts("range: #{@@disc_map[i][0]} dto: #{@@disc_map[i][1]}")
     end
 end
 
