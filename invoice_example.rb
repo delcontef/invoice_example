@@ -34,7 +34,8 @@ class Invoice
     def calculate(qty, u_price)
         qty = qty.to_f()
         u_price = u_price.to_f()
-        puts("In calculate method. qty: #{qty} u_price: #{u_price}")
+        total_price = qty * u_price
+        puts("total_price: #{total_price}")
     end
 end
 
