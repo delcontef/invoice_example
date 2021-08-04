@@ -37,8 +37,15 @@ class Invoice
     end
 
     def calculate(qty, u_price)
-        qty = qty.to_f()
         u_price = u_price.to_f()
+
+        if(is_valid_string?(qty))
+            qty = qty.to_f()
+        else
+            puts("\nError!\nInvalid quantity parameter...")
+            exit
+        end
+
         total_price = qty * u_price
         total_tax = total_price * @a_tax / 100
 
@@ -61,6 +68,13 @@ class Invoice
         puts("final_value: #{final_value}")
         puts("****************************")
 
+    end
+
+    private
+    def is_valid_string?(str)
+        is_valid = true
+        str.split('').each{|a_char| is_valid &= a_char.between?('0', '9')}
+        return is_valid
     end
 end
 
