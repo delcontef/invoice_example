@@ -37,12 +37,17 @@ class Invoice
     end
 
     def calculate(qty, u_price)
-        u_price = u_price.to_f()
-
         if(is_valid_string?(qty))
             qty = qty.to_f()
         else
             puts("\nError!\nInvalid quantity parameter...")
+            exit
+        end
+
+        if(is_valid_string?(u_price))
+            u_price = u_price.to_f()
+        else
+            puts("\nError!\nInvalid unitary price parameter...")
             exit
         end
 
