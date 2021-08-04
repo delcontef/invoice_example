@@ -27,6 +27,10 @@ class Invoice
 
     def initialize(state)
         @state = state.to_s().downcase()
+        if(false == is_valid_string?(@state,'a', 'z'))
+            puts("\nError!\nInvalid state parameter...")
+            exit
+        end
         @a_tax = @@tax_map[@state]
         if(nil == @a_tax)
             puts("\nError!\nTax information not found!. Please, try again..")
@@ -37,14 +41,14 @@ class Invoice
     end
 
     def calculate(qty, u_price)
-        if(is_valid_string?(qty))
+        if(is_valid_string?(qty,'0', '9'))
             qty = qty.to_f()
         else
             puts("\nError!\nInvalid quantity parameter...")
             exit
         end
 
-        if(is_valid_string?(u_price))
+        if(is_valid_string?(u_price,'0', '9'))
             u_price = u_price.to_f()
         else
             puts("\nError!\nInvalid unitary price parameter...")
@@ -76,9 +80,9 @@ class Invoice
     end
 
     private
-    def is_valid_string?(str)
+    def is_valid_string?(str, start, stop)
         is_valid = true
-        str.split('').each{|a_char| is_valid &= a_char.between?('0', '9')}
+        str.split('').each{|a_char| is_valid &= a_char.between?(start, stop)}
         return is_valid
     end
 end
