@@ -48,7 +48,7 @@ class Invoice
             exit
         end
 
-        if(is_valid_string?(u_price,'0', '9'))
+        if(is_valid_number_string?(u_price))
             u_price = u_price.to_f()
         else
             puts("\nError!\nInvalid unitary price parameter...")
@@ -83,6 +83,12 @@ class Invoice
     def is_valid_string?(str, start, stop)
         is_valid = true
         str.split('').each{|a_char| is_valid &= a_char.between?(start, stop)}
+        return is_valid
+    end
+
+    def is_valid_number_string?(str)
+        is_valid = true
+        str.split('').each{|a_char| is_valid &= (a_char.between?('0', '9') || a_char.eql?('.'))}
         return is_valid
     end
 end
